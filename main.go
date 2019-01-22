@@ -11,16 +11,16 @@ import (
 
 	"fmt"
 
-	"github.com/louisevanderlith/mango/app/gate/domains"
-	"github.com/louisevanderlith/mango/pkg"
-	"github.com/louisevanderlith/mango/pkg/enums"
+	"github.com/louisevanderlith/gate/domains"
+	"github.com/louisevanderlith/mango"
+	"github.com/louisevanderlith/mango/enums"
 )
 
 func main() {
 	mode := beego.AppConfig.String("runmode")
 	appName := beego.AppConfig.String("appname")
 	// Register with router
-	srv := util.NewService(mode, appName, enums.APP)
+	srv := mango.NewService(mode, appName, enums.APP)
 
 	httpsPort := beego.AppConfig.String("httpsport")
 

@@ -10,7 +10,7 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/louisevanderlith/mango/pkg"
+	"github.com/louisevanderlith/mango"
 )
 
 type DomainSetting struct {
@@ -22,8 +22,8 @@ type DomainSetting struct {
 type Settings []*DomainSetting
 
 func loadSettings() *Settings {
-	dbConfPath := util.FindFilePath("domains.json", "conf")
-	content := util.GetFileContent(dbConfPath)
+	dbConfPath := mango.FindFilePath("domains.json", "conf")
+	content := mango.GetFileContent(dbConfPath)
 
 	settings := &Settings{}
 	err := json.Unmarshal(content, settings)
@@ -51,7 +51,7 @@ func (s *DomainSetting) SetupMux(instanceID string) (http.Handler, error) {
 }
 
 func (s *DomainSetting) subdomainSetup(instanceID string) (http.Handler, error) {
-	rawURL, err := util.GetServiceURL(instanceID, s.Name, false)
+	rawURL, err := mango.GetServiceURL(instanceID, s.Name, false)
 
 	if err != nil {
 		return nil, err
