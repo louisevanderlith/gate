@@ -37,7 +37,7 @@ func RegisterSubdomains(instanceID string) *Subdomains {
 		handl, err := v.SetupMux(instanceID)
 
 		if err != nil {
-			log.Printf("Register Subdomains: %s - %s\n", v.Name, err.Error())
+			log.Printf("Register Subdomains: %s\t%s - %s\n", v.Name, err.Error(), instanceID)
 		}
 
 		result.Add(v.Address, handl)
@@ -58,7 +58,7 @@ func (d *Subdomains) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	handleSession(*r.URL, w)
 	domainParts := strings.Split(r.Host, ".")
 	sdomainName := domainParts[0]
-
+	log.Print("Parts", domainParts)
 	result := d.GetMux(sdomainName)
 
 	result.ServeHTTP(w, r)
