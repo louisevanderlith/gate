@@ -41,6 +41,16 @@ github.com/louisevanderlith/mango v0.0.0-20190122140729-96edbc480749 h1:R2T9azkM
 github.com/louisevanderlith/mango v0.0.0-20190122140729-96edbc480749/go.mod h1:OnBHc00lUq4cH/m+jV+dsdJW+acEmr67nnx+ESI4uhE=
 github.com/louisevanderlith/mango v0.1.2 h1:LR2vd2kvUXayuFMcGRCNoLoEQR5WwLZrK7Em2HG34ms=
 github.com/louisevanderlith/mango v0.1.2/go.mod h1:HgTP32VLyeos6GZCfMnPMWT9OcYe313qmL7ZUgfwSFQ=
+github.com/louisevanderlith/mango v0.1.11 h1:EqMAbAIwr1tNkVEZTQUPoDCnHuglnuAmlN/SKylLa1g=
+github.com/louisevanderlith/mango v0.1.11/go.mod h1:HgTP32VLyeos6GZCfMnPMWT9OcYe313qmL7ZUgfwSFQ=
+github.com/louisevanderlith/mango v0.1.12 h1:n0vd6QsplIGf7UxhPHwwZYZOrg8KS8Sa68r/GkQwls8=
+github.com/louisevanderlith/mango v0.1.12/go.mod h1:HgTP32VLyeos6GZCfMnPMWT9OcYe313qmL7ZUgfwSFQ=
+github.com/louisevanderlith/mango v0.1.13 h1:OMid8FJRjK5dtQUIbn3u2R8NLEk5LF9MscP3UtMwYJ0=
+github.com/louisevanderlith/mango v0.1.13/go.mod h1:HgTP32VLyeos6GZCfMnPMWT9OcYe313qmL7ZUgfwSFQ=
+github.com/louisevanderlith/mango v0.2.11 h1:G13wSlRrvXfeyU8Fc5HKvCsTFgVvFV93nyvfxVT+70U=
+github.com/louisevanderlith/mango v0.2.11/go.mod h1:HgTP32VLyeos6GZCfMnPMWT9OcYe313qmL7ZUgfwSFQ=
+github.com/louisevanderlith/mango v0.2.12 h1:yv07wH0qyA6RDrBecyfrWyIIabiaukkHueyYxKD6dF8=
+github.com/louisevanderlith/mango v0.2.12/go.mod h1:HgTP32VLyeos6GZCfMnPMWT9OcYe313qmL7ZUgfwSFQ=
 github.com/louisevanderlith/mango/pkg v0.0.0-20181202123612-7b97a5d63b55 h1:SA7W5r4QNtdQRIQLx3q37SK1b0XJ7THFZcbs/AM0uGM=
 github.com/louisevanderlith/mango/pkg v0.0.0-20181202123612-7b97a5d63b55/go.mod h1:9j43sMdcux9VY7M8i6fj6Z1Ki8idoOC35cUrqNTW/6w=
 github.com/mattn/go-sqlite3 v1.10.0/go.mod h1:FPy6KqzDD04eiIsT53CuJW3U88zkxoIYsOqkbpncsNc=

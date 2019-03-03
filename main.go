@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"os"
 	"time"
 
 	"github.com/astaxie/beego"
@@ -17,7 +18,7 @@ import (
 )
 
 func main() {
-	mode := beego.AppConfig.String("runmode")
+	mode := os.Getenv("RUNMODE")
 	appName := beego.AppConfig.String("appname")
 	// Register with router
 	srv := mango.NewService(mode, appName, enums.APP)

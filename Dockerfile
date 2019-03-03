@@ -2,5 +2,8 @@ FROM alpine:latest
 
 COPY gate .
 COPY conf conf
-VOLUME [ "/certs" ]
-CMD [ "./gate" ]
+
+EXPOSE 80
+EXPOSE 443
+
+ENTRYPOINT [ "./gate" ]

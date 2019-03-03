@@ -56,11 +56,12 @@ func (d *Subdomains) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	}
 
 	handleSession(*r.URL, w)
+	log.Printf("Host: %s\n", r.Host)
+
 	domainParts := strings.Split(r.Host, ".")
 	sdomainName := domainParts[0]
-	log.Print("Parts", domainParts)
-	result := d.GetMux(sdomainName)
 
+	result := d.GetMux(sdomainName)
 	result.ServeHTTP(w, r)
 }
 

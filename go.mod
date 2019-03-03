@@ -10,7 +10,7 @@ require (
 	github.com/kr/pretty v0.1.0 // indirect
 	github.com/kr/pty v1.1.3 // indirect
 	github.com/louisevanderlith/husk v0.0.0-20181202133139-ef9019913e69 // indirect
-	github.com/louisevanderlith/mango v0.1.2
+	github.com/louisevanderlith/mango v0.2.12
 	github.com/louisevanderlith/mango/pkg v0.0.0-20181202123612-7b97a5d63b55 // indirect
 	github.com/pkg/errors v0.8.1 // indirect
 	github.com/syndtr/goleveldb v0.0.0-20181128100959-b001fa50d6b2 // indirect

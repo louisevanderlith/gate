@@ -40,8 +40,8 @@
         "Type": "Subdomain"
     },
     {
-        "Name": "Auto.APP",
-        "Address": "auto",
+        "Name": "Cars.APP",
+        "Address": "cars",
         "Type": "Subdomain"
     },
     {
@@ -57,6 +57,11 @@
     {
         "Name": "Funds.API",
         "Address": "funds",
+        "Type": "Subdomain"
+    },
+    {
+        "Name": "Theme.API",
+        "Address": "theme",
         "Type": "Subdomain"
     }
 ]
