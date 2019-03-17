@@ -4,7 +4,6 @@ Mango Web: Gate
 Gate enables the use of subdomains and ssl at development time, and also acts as the gateway for all incoming requests.
 
 ## Run with Docker
-*$ go build
 *$ docker build -t avosa/gate:latest .
 *$ docker rm GateDEV
 *$ docker run -d -e RUNMODE=DEV -p 80:80 -p 443:443 --network mango_net --name GateDEV -v `pwd`/certs/:/certs avosa/gate:latest

@@ -15,7 +15,7 @@
         "Type": "Subdomain"
     },
     {
-        "Name": "Communication.API",
+        "Name": "Comms.API",
         "Address": "comms",
         "Type": "Subdomain"
     },
@@ -27,6 +27,11 @@
     {
         "Name": "Router.API",
         "Address": "router",
+        "Type": "Subdomain"
+    },
+    {
+        "Name": "Auth.APP",
+        "Address": "auth",
         "Type": "Subdomain"
     },
     {
