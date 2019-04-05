@@ -68,5 +68,10 @@
         "Name": "Theme.API",
         "Address": "theme",
         "Type": "Subdomain"
+    },
+    {
+        "Name": "VIN.API",
+        "Address": "vin",
+        "Type": "Subdomain"
     }
 ]

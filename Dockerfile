@@ -10,7 +10,7 @@ COPY domains ./domains
 
 RUN CGO_ENABLED="0" go build
 
-FROM alpine:latest
+FROM scratch
 
 COPY --from=builder /box/gate .
 COPY conf conf
