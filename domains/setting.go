@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"net/http/httputil"
@@ -21,18 +22,22 @@ type DomainSetting struct {
 
 type Settings []*DomainSetting
 
-func loadSettings() *Settings {
+func loadSettings() (*Settings, error) {
 	dbConfPath := mango.FindFilePath("domains.json", "conf")
-	content := mango.GetFileContent(dbConfPath)
-
-	settings := &Settings{}
-	err := json.Unmarshal(content, settings)
+	content, err := ioutil.ReadFile(dbConfPath)
 
 	if err != nil {
-		log.Print("loadSettings: ", err)
+		return nil, err
 	}
 
-	return settings
+	settings := &Settings{}
+	err = json.Unmarshal(content, settings)
+
+	if err != nil {
+		return nil, err
+	}
+
+	return settings, nil
 }
 
 func (s *DomainSetting) SetupMux(instanceID string) (http.Handler, error) {

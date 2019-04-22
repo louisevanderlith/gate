@@ -31,7 +31,11 @@ func RegisterSubdomains(instanceID string) *Subdomains {
 	result := NewSubdomains()
 	result.Add(ssl, sslMuxSetup())
 
-	confDomains := loadSettings()
+	confDomains, err := loadSettings()
+
+	if err != nil {
+		panic(err)
+	}
 
 	for _, v := range *confDomains {
 		handl, err := v.SetupMux(instanceID)
