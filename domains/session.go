@@ -1,18 +1,9 @@
 package domains
 
-import (
-	"net/http"
-	"net/url"
-	"strings"
-)
+/*func handleSession(url url.URL, w http.ResponseWriter) {
+	sessionID := w.("avosession")
 
-func handleSession(url url.URL, w http.ResponseWriter) {
-	if !strings.Contains(url.String(), "?token=") {
-		return
-	}
-
-	sessionID := url.Query().Get(token)
-
+	log.Println("SessionID:", sessionID)
 	if sessionID != "" {
 		cookie := http.Cookie{
 			Name:     "avosession",
@@ -24,4 +15,4 @@ func handleSession(url url.URL, w http.ResponseWriter) {
 
 		http.SetCookie(w, &cookie)
 	}
-}
+}*/

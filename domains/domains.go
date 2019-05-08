@@ -59,8 +59,6 @@ func (d *Subdomains) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	handleSession(*r.URL, w)
-
 	domainParts := strings.Split(r.Host, ".")
 	sdomainName := domainParts[0]
 
