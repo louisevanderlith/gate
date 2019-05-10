@@ -20,6 +20,11 @@
         "Type": "Subdomain"
     },
     {
+        "Name": "Entity.API",
+        "Address": "entity",
+        "Type": "Subdomain"
+    },
+    {
         "Name": "Folio.API",
         "Address": "folio",
         "Type": "Subdomain"
@@ -50,8 +55,18 @@
         "Type": "Subdomain"
     },
     {
-        "Name": "Logbook.APP",
+        "Name": "Logbook.API",
         "Address": "logbook",
+        "Type": "Subdomain"
+    },
+    {
+        "Name": "Quote.API",
+        "Address": "quote",
+        "Type": "Subdomain"
+    },
+    {
+        "Name": "Service.APP",
+        "Address": "service",
         "Type": "Subdomain"
     },
     {

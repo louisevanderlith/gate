@@ -2,26 +2,46 @@ package domains
 
 import (
 	"net/http"
-	"net/url"
 	"strings"
 )
 
-func handleSession(url url.URL, w http.ResponseWriter) {
-	if !strings.Contains(url.String(), "?token=") {
+const cookieName = "avosession"
+
+func handleSession(r *http.Request, w http.ResponseWriter) {
+	token := ""
+	path := r.URL.RequestURI()
+
+	if !strings.Contains(path, "?access_token") {
 		return
 	}
 
-	sessionID := url.Query().Get(token)
+	_, token = removeToken(path)
 
-	if sessionID != "" {
+	if len(token) > 0 {
+
 		cookie := http.Cookie{
-			Name:     "avosession",
+			Name:     cookieName,
 			Path:     "/",
-			Value:    sessionID,
+			Value:    token,
 			HttpOnly: true,
 			MaxAge:   0,
 		}
 
 		http.SetCookie(w, &cookie)
 	}
+}
+
+func removeToken(url string) (string, string) {
+	idx := strings.LastIndex(url, "?access_token")
+
+	if idx == -1 {
+		return url, ""
+	}
+
+	tokenIdx := strings.LastIndex(url, "=") + 1
+
+	cleanURL := url[:idx]
+	token := url[tokenIdx:]
+
+	return cleanURL, token
 }
