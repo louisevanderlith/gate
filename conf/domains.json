@@ -10,6 +10,21 @@
         "Type": "Subdomain"
     },
     {
+        "Name": "Ads.API",
+        "Address": "ads",
+        "Type": "Subdomain"
+    },
+    {
+        "Name": "Blog.API",
+        "Address": "blog",
+        "Type": "Subdomain"
+    },
+    {
+        "Name": "Notify.API",
+        "Address": "notify",
+        "Type": "Subdomain"
+    },
+    {
         "Name": "Comment.API",
         "Address": "comment",
         "Type": "Subdomain"
