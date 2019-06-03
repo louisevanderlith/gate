@@ -19,7 +19,6 @@ import (
 )
 
 func main() {
-	mode := os.Getenv("RUNMODE")
 	keyPath := os.Getenv("KEYPATH")
 	pubName := os.Getenv("PUBLICKEY")
 	privName := os.Getenv("PRIVATEKEY")
@@ -27,7 +26,7 @@ func main() {
 
 	appName := beego.BConfig.AppName
 	// Register with router
-	srv := mango.NewService(mode, appName, pubPath, enums.APP)
+	srv := mango.NewService(appName, pubPath, enums.APP)
 
 	httpsPort := beego.AppConfig.String("httpsport")
 

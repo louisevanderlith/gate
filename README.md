@@ -16,7 +16,7 @@ We require 1(one) instance of Gate running for every environment we have.
 ```
 >$ docker build -t avosa/gate:dev .
 >$ docker rm GateDEV
->$ docker run -d -e RUNMODE=DEV -e KEYPATH=/certs/ -e PUBLICKEY= -p 80:80 -p 443:443 --network mango_net --name GateDEV -v `pwd`/certs/:/certs avosa/gate:dev
+>$ docker run -d -e KEYPATH=/certs/ -e PUBLICKEY= -p 80:80 -p 443:443 --network mango_net --name GateDEV -v `pwd`/certs/:/certs avosa/gate:dev
 >$ docker logs GateDEV
 ```
 

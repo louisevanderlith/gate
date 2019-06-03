@@ -103,5 +103,10 @@
         "Name": "VIN.API",
         "Address": "vin",
         "Type": "Subdomain"
+    },
+    {
+        "Name": "Vehicle.API",
+        "Address": "vehicle",
+        "Type": "Subdomain"
     }
 ]
