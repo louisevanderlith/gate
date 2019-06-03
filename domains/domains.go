@@ -4,17 +4,15 @@ import (
 	"log"
 	"net/http"
 	"strings"
-
-	"github.com/astaxie/beego"
 )
 
 type Subdomains struct {
 	subs map[string]http.Handler
 }
 
-func NewSubdomains() *Subdomains {
+func newSubdomains() *Subdomains {
 	subs := make(map[string]http.Handler)
-	return &Subdomains{subs}
+	return &Subdomains{subs: subs}
 }
 
 const (
@@ -23,13 +21,9 @@ const (
 	www   = "www"
 )
 
-func (s *Subdomains) Add(name string, handler http.Handler) {
-	s.subs[name] = handler
-}
-
-func RegisterSubdomains(instanceID string) *Subdomains {
-	result := NewSubdomains()
-	result.Add(ssl, sslMuxSetup())
+func RegisterSubdomains(instanceID, certPath string) *Subdomains {
+	result := newSubdomains()
+	result.Add(ssl, sslMuxSetup(certPath))
 
 	confDomains, err := loadSettings()
 
@@ -50,6 +44,12 @@ func RegisterSubdomains(instanceID string) *Subdomains {
 	return result
 }
 
+//Add will overwrite a subdomain with the same name with the given handler.
+func (s *Subdomains) Add(name string, handler http.Handler) {
+	s.subs[name] = handler
+}
+
+//ServeHTTP calls the requested subdomains' handler
 func (d *Subdomains) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	// CertBot requires tests on well-known for SSL Certs
 	if strings.Contains(r.URL.String(), "well-known") {
@@ -78,9 +78,9 @@ func (d *Subdomains) GetMux(subdomain string) http.Handler {
 	return result
 }
 
-func sslMuxSetup() http.Handler {
+func sslMuxSetup(certPath string) http.Handler {
 	sslMux := http.NewServeMux()
-	certPath := beego.AppConfig.String("certpath")
+
 	fullCertPath := http.FileSystem(http.Dir(certPath))
 	fs := http.FileServer(fullCertPath)
 	challengePath := "/.well-known/acme-challenge/"

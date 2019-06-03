@@ -2,7 +2,6 @@ package domains
 
 import (
 	"fmt"
-	"log"
 	"net/http"
 	"strings"
 )
@@ -20,23 +19,17 @@ func handleSession(r *http.Request, w http.ResponseWriter) {
 	_, token = removeToken(path)
 
 	if len(token) > 0 {
-		domain := r.Host
-		secure := true
-		log.Println(domain)
-
-		if strings.Contains(domain, "localhost") {
-			domain = "localhost.org"
-			secure = false
-		}
-
 		cookie := http.Cookie{
 			Name:     cookieName,
 			Path:     "/",
 			Value:    token,
 			HttpOnly: true,
 			MaxAge:   0,
-			Domain:   fmt.Sprintf(".%s", domain),
-			Secure:   secure,
+		}
+
+		if !strings.Contains(r.Host, "localhost") {
+			cookie.Domain = fmt.Sprintf(".%s", r.Host)
+			cookie.Secure = true
 		}
 
 		http.SetCookie(w, &cookie)

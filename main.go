@@ -6,6 +6,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"path"
 	"time"
 
 	"github.com/astaxie/beego"
@@ -18,12 +19,14 @@ import (
 )
 
 func main() {
-	mode := os.Getenv("RUNMODE")
-	pubPath := os.Getenv("KEYPATH")
+	keyPath := os.Getenv("KEYPATH")
+	pubName := os.Getenv("PUBLICKEY")
+	privName := os.Getenv("PRIVATEKEY")
+	pubPath := path.Join(keyPath, pubName)
 
 	appName := beego.BConfig.AppName
 	// Register with router
-	srv := mango.NewService(mode, appName, pubPath, enums.APP)
+	srv := mango.NewService(appName, pubPath, enums.APP)
 
 	httpsPort := beego.AppConfig.String("httpsport")
 
@@ -34,13 +37,13 @@ func main() {
 	}
 
 	httpPort := beego.AppConfig.String("httpport")
-	setupHost(httpPort, httpsPort, srv.ID)
+	setupHost(httpPort, httpsPort, srv.ID, keyPath, pubName, privName)
 }
 
-func setupHost(httpPort, httpsPort string, instanceID string) {
-	subs := domains.RegisterSubdomains(instanceID)
+func setupHost(httpPort, httpsPort, instanceID, certPath, publicKey, privateKey string) {
+	subs := domains.RegisterSubdomains(instanceID, certPath)
 
-	go serveHTTP2(subs, httpsPort)
+	go serveHTTP2(subs, httpsPort, certPath, publicKey, privateKey)
 
 	err := http.ListenAndServe(":"+httpPort, http.HandlerFunc(redirectTLS))
 
@@ -54,11 +57,10 @@ func redirectTLS(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, moveURL, http.StatusPermanentRedirect)
 }
 
-func serveHTTP2(domains *domains.Subdomains, httpsPort string) {
-	certPath := beego.AppConfig.String("certpath")
-	certPem := readCertBlock(certPath)
-	keyPem := readKeyBlock(certPath)
-	cert, err := tls.X509KeyPair(certPem, keyPem)
+func serveHTTP2(domains *domains.Subdomains, httpsPort, certPath, publicKey, privateKey string) {
+	publicKeyPem := readBlocks(path.Join(certPath, publicKey))
+	privateKeyPem := readBlocks(path.Join(certPath, privateKey))
+	cert, err := tls.X509KeyPair(publicKeyPem, privateKeyPem)
 
 	if err != nil {
 		panic(err)
@@ -91,16 +93,4 @@ func readBlocks(filePath string) []byte {
 	}
 
 	return file
-}
-
-func readCertBlock(path string) []byte {
-	hostCert := path + beego.AppConfig.String("hostCert")
-
-	return readBlocks(hostCert)
-}
-
-func readKeyBlock(path string) []byte {
-	hostKey := path + beego.AppConfig.String("hostKey")
-
-	return readBlocks(hostKey)
 }
