@@ -35,7 +35,7 @@ func RegisterSubdomains(instanceID, certPath string) *Subdomains {
 		handl, err := v.SetupMux(instanceID)
 
 		if err != nil {
-			log.Printf("Register Subdomains: %s\t%s - %s\n", v.Name, err.Error(), instanceID)
+			log.Printf("Register Subdomains: %s\t%s\n", v.Name, err.Error())
 		}
 
 		result.Add(v.Address, handl)

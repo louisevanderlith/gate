@@ -1,12 +1,7 @@
 [
     {
-        "Name": "WWW.APP",
-        "Address": "www",
-        "Type": "Subdomain"
-    },
-    {
-        "Name": "Artifact.API",
-        "Address": "artifact",
+        "Name": "Admin.APP",
+        "Address": "admin",
         "Type": "Subdomain"
     },
     {
@@ -15,13 +10,23 @@
         "Type": "Subdomain"
     },
     {
+        "Name": "Artifact.API",
+        "Address": "artifact",
+        "Type": "Subdomain"
+    },
+    {
+        "Name": "Auth.APP",
+        "Address": "auth",
+        "Type": "Subdomain"
+    },
+    {
         "Name": "Blog.API",
         "Address": "blog",
         "Type": "Subdomain"
     },
     {
-        "Name": "Notify.API",
-        "Address": "notify",
+        "Name": "Cars.APP",
+        "Address": "cars",
         "Type": "Subdomain"
     },
     {
@@ -45,28 +50,13 @@
         "Type": "Subdomain"
     },
     {
-        "Name": "Router.API",
-        "Address": "router",
+        "Name": "Funds.API",
+        "Address": "funds",
         "Type": "Subdomain"
     },
     {
-        "Name": "Auth.APP",
-        "Address": "auth",
-        "Type": "Subdomain"
-    },
-    {
-        "Name": "Secure.API",
-        "Address": "secure",
-        "Type": "Subdomain"
-    },
-    {
-        "Name": "Admin.APP",
-        "Address": "admin",
-        "Type": "Subdomain"
-    },
-    {
-        "Name": "Cars.APP",
-        "Address": "cars",
+        "Name": "Game.API",
+        "Address": "game",
         "Type": "Subdomain"
     },
     {
@@ -75,8 +65,23 @@
         "Type": "Subdomain"
     },
     {
+        "Name": "Notify.API",
+        "Address": "notify",
+        "Type": "Subdomain"
+    },
+    {
         "Name": "Quote.API",
         "Address": "quote",
+        "Type": "Subdomain"
+    },
+    {
+        "Name": "Router.API",
+        "Address": "router",
+        "Type": "Subdomain"
+    },
+    {
+        "Name": "Secure.API",
+        "Address": "secure",
         "Type": "Subdomain"
     },
     {
@@ -89,14 +94,15 @@
         "Address": "shop",
         "Type": "Subdomain"
     },
-    {
-        "Name": "Funds.API",
-        "Address": "funds",
-        "Type": "Subdomain"
-    },
+    
     {
         "Name": "Theme.API",
         "Address": "theme",
+        "Type": "Subdomain"
+    },
+    {
+        "Name": "Vehicle.API",
+        "Address": "vehicle",
         "Type": "Subdomain"
     },
     {
@@ -105,8 +111,8 @@
         "Type": "Subdomain"
     },
     {
-        "Name": "Vehicle.API",
-        "Address": "vehicle",
+        "Name": "WWW.APP",
+        "Address": "www",
         "Type": "Subdomain"
     }
 ]
