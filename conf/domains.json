@@ -5,8 +5,8 @@
         "Type": "Subdomain"
     },
     {
-        "Name": "Ads.API",
-        "Address": "ads",
+        "Name": "Stock.API",
+        "Address": "stock",
         "Type": "Subdomain"
     },
     {
