@@ -111,6 +111,11 @@
         "Type": "Subdomain"
     },
     {
+        "Name": "XChange.API",
+        "Address": "xchange",
+        "Type": "Subdomain"
+    },
+    {
         "Name": "WWW.APP",
         "Address": "www",
         "Type": "Subdomain"
