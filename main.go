@@ -1,96 +1,44 @@
 package main
 
 import (
-	"crypto/tls"
-	"io/ioutil"
 	"log"
-	"net/http"
 	"os"
 	"path"
-	"time"
 
-	"github.com/astaxie/beego"
-
-	"fmt"
-
-	"github.com/louisevanderlith/gate/domains"
-	"github.com/louisevanderlith/mango"
-	"github.com/louisevanderlith/mango/enums"
+	"github.com/louisevanderlith/droxolite"
+	"github.com/louisevanderlith/droxolite/servicetype"
+	"github.com/louisevanderlith/gate/routers"
 )
 
 func main() {
 	keyPath := os.Getenv("KEYPATH")
 	pubName := os.Getenv("PUBLICKEY")
 	privName := os.Getenv("PRIVATEKEY")
+	//host := os.Getenv("HOST")
 	pubPath := path.Join(keyPath, pubName)
+	privPath := path.Join(keyPath, privName)
 
-	appName := beego.BConfig.AppName
+	conf, err := droxolite.LoadConfig()
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	// Register with router
-	srv := mango.NewService(appName, pubPath, enums.APP)
+	srv := droxolite.NewService(conf.Appname, pubPath, conf.HTTPSPort, servicetype.API)
 
-	httpsPort := beego.AppConfig.String("httpsport")
-
-	err := srv.Register(httpsPort)
+	err = srv.Register()
 
 	if err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 
-	httpPort := beego.AppConfig.String("httpport")
-	setupHost(httpPort, httpsPort, srv.ID, keyPath, pubName, privName)
-}
+	poxy := droxolite.NewEpoxy(srv)
+	routers.Setup(poxy, srv.ID, keyPath)
 
-func setupHost(httpPort, httpsPort, instanceID, certPath, publicKey, privateKey string) {
-	subs := domains.RegisterSubdomains(instanceID, certPath)
-
-	go serveHTTP2(subs, httpsPort, certPath, publicKey, privateKey)
-
-	err := http.ListenAndServe(":"+httpPort, http.HandlerFunc(redirectTLS))
+	err = poxy.BootSecure(privPath, conf.HTTPPort)
 
 	if err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
-}
-
-func redirectTLS(w http.ResponseWriter, r *http.Request) {
-	moveURL := fmt.Sprintf("https://%s%s", r.Host, r.RequestURI)
-	http.Redirect(w, r, moveURL, http.StatusPermanentRedirect)
-}
-
-func serveHTTP2(domains *domains.Subdomains, httpsPort, certPath, publicKey, privateKey string) {
-	publicKeyPem := readBlocks(path.Join(certPath, publicKey))
-	privateKeyPem := readBlocks(path.Join(certPath, privateKey))
-	cert, err := tls.X509KeyPair(publicKeyPem, privateKeyPem)
-
-	if err != nil {
-		panic(err)
-	}
-
-	cfg := &tls.Config{Certificates: []tls.Certificate{cert}}
-
-	srv := &http.Server{
-		TLSConfig:    cfg,
-		ReadTimeout:  time.Minute,
-		WriteTimeout: time.Minute,
-		Addr:         ":" + httpsPort,
-		Handler:      domains,
-	}
-
-	log.Println("Listening...")
-
-	err = srv.ListenAndServeTLS("", "")
-
-	if err != nil {
-		panic(err)
-	}
-}
-
-func readBlocks(filePath string) []byte {
-	file, err := ioutil.ReadFile(filePath)
-
-	if err != nil {
-		panic(err)
-	}
-
-	return file
 }

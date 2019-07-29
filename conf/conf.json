@@ -1,0 +1,5 @@
+{
+    "Appname": "Master.PROXY",
+    "HTTPPort": 80,
+    "HTTPSPort": 443
+}

@@ -1,4 +1,4 @@
-FROM golang:1.11 as build_base
+FROM golang:1.12 as build_base
 
 WORKDIR /box
 
@@ -11,6 +11,7 @@ FROM build_base as builder
 
 COPY main.go .
 COPY domains ./domains
+COPY routers ./routers 
 
 RUN CGO_ENABLED="0" go build
 

@@ -1,6 +1,3 @@
 module github.com/louisevanderlith/gate
 
-require (
-	github.com/astaxie/beego v1.11.1
-	github.com/louisevanderlith/mango v0.3.64
-)
+require github.com/louisevanderlith/droxolite v1.0.5
