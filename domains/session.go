@@ -10,7 +10,9 @@ const cookieName = "avosession"
 
 func HandleSession(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		defer next.ServeHTTP(w, r)
+		if next != nil {
+			defer next.ServeHTTP(w, r)
+		}
 
 		token := ""
 		path := r.URL.RequestURI()

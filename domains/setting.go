@@ -3,6 +3,7 @@ package domains
 import (
 	"encoding/json"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"net/http/httputil"
 	"net/url"
@@ -53,6 +54,6 @@ func (s *Subdomain) SetupMux(instanceID string) (http.Handler, error) {
 	if err != nil {
 		return nil, err
 	}
-
+	log.Printf("Proxy: %v\n", vshost)
 	return httputil.NewSingleHostReverseProxy(vshost), nil
 }
