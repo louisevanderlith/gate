@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/gorilla/mux"
 	"github.com/louisevanderlith/droxolite"
 	"github.com/louisevanderlith/gate/domains"
 )
@@ -32,7 +33,7 @@ func Setup(e *droxolite.Epoxy, instanceID, certPath string) {
 		fs := http.FileServer(fullCertPath)
 		challengePath := "/.well-known/acme-challenge/"
 
-		sub := router.Host(fmt.Sprintf("{subdomain:[a-z]+}%s", v.Domain)).Subrouter()
+		sub := router.(*mux.Router).Host(fmt.Sprintf("{subdomain:[a-z]+}%s", v.Domain)).Subrouter()
 		sub.Handle(challengePath, fs)
 
 		for _, sdom := range v.Subdomains {
