@@ -6,7 +6,7 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
-	"github.com/louisevanderlith/droxolite"
+	"github.com/louisevanderlith/droxolite/resins"
 	"github.com/louisevanderlith/gate/domains"
 )
 
@@ -18,14 +18,14 @@ func Boot(httpsPort, httpPort int) error {
 	log.Fata(http.ListenAn)
 }*/
 
-func Setup(e *droxolite.Epoxy, instanceID, certPath string) {
+func Setup(e resins.Epoxi, instanceID, certPath string) {
 	confDomains, err := domains.LoadSettings()
 
 	if err != nil {
 		panic(err)
 	}
 
-	router := e.GetRouter()
+	router := e.Router()
 	for _, v := range *confDomains {
 		log.Printf("Building %s: \n", v.Domain)
 		//SSL
