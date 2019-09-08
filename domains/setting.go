@@ -9,6 +9,7 @@ import (
 	"net/url"
 
 	"github.com/louisevanderlith/droxolite"
+	"github.com/louisevanderlith/droxolite/do"
 )
 
 type Subdomain struct {
@@ -43,7 +44,7 @@ func LoadSettings() (*Settings, error) {
 }
 
 func (s *Subdomain) SetupMux(instanceID string) (http.Handler, error) {
-	rawURL, err := droxolite.GetServiceURL(instanceID, s.Name, false)
+	rawURL, err := do.GetServiceURL(instanceID, s.Name, false)
 
 	if err != nil {
 		return nil, err
