@@ -8,32 +8,38 @@ import (
 
 const cookieName = "avosession"
 
-func handleSession(r *http.Request, w http.ResponseWriter) {
-	token := ""
-	path := r.URL.RequestURI()
-
-	if !strings.Contains(path, "?access_token") {
-		return
-	}
-
-	_, token = removeToken(path)
-
-	if len(token) > 0 {
-		cookie := http.Cookie{
-			Name:     cookieName,
-			Path:     "/",
-			Value:    token,
-			HttpOnly: true,
-			MaxAge:   0,
+func HandleSession(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if next != nil {
+			defer next.ServeHTTP(w, r)
 		}
 
-		if !strings.Contains(r.Host, "localhost") {
-			cookie.Domain = fmt.Sprintf(".%s", r.Host)
-			cookie.Secure = true
+		token := ""
+		path := r.URL.RequestURI()
+
+		if !strings.Contains(path, "?access_token") {
+			return
 		}
 
-		http.SetCookie(w, &cookie)
-	}
+		_, token = removeToken(path)
+
+		if len(token) > 0 {
+			cookie := http.Cookie{
+				Name:     cookieName,
+				Path:     "/",
+				Value:    token,
+				HttpOnly: true,
+				MaxAge:   0,
+			}
+
+			if !strings.Contains(r.Host, "localhost") {
+				cookie.Domain = fmt.Sprintf(".%s", r.Host)
+				cookie.Secure = true
+			}
+
+			http.SetCookie(w, &cookie)
+		}
+	})
 }
 
 func removeToken(url string) (string, string) {

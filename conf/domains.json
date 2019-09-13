@@ -1,118 +1,187 @@
 [
     {
-        "Name": "Admin.APP",
-        "Address": "admin",
-        "Type": "Subdomain"
+        "Domain": ".localhost",
+        "Subdomains": [
+            {
+                "Name": "Admin.APP",
+                "Address": "admin",
+                "Type": "Subdomain"
+            },
+            {
+                "Name": "Stock.API",
+                "Address": "stock",
+                "Type": "Subdomain"
+            },
+            {
+                "Name": "Artifact.API",
+                "Address": "artifact",
+                "Type": "Subdomain"
+            },
+            {
+                "Name": "Auth.APP",
+                "Address": "auth",
+                "Type": "Subdomain"
+            },
+            {
+                "Name": "Blog.API",
+                "Address": "blog",
+                "Type": "Subdomain"
+            },
+            {
+                "Name": "Cars.APP",
+                "Address": "cars",
+                "Type": "Subdomain"
+            },
+            {
+                "Name": "Comment.API",
+                "Address": "comment",
+                "Type": "Subdomain"
+            },
+            {
+                "Name": "Comms.API",
+                "Address": "comms",
+                "Type": "Subdomain"
+            },
+            {
+                "Name": "Entity.API",
+                "Address": "entity",
+                "Type": "Subdomain"
+            },
+            {
+                "Name": "Folio.API",
+                "Address": "folio",
+                "Type": "Subdomain"
+            },
+            {
+                "Name": "Funds.API",
+                "Address": "funds",
+                "Type": "Subdomain"
+            },
+            {
+                "Name": "Game.API",
+                "Address": "game",
+                "Type": "Subdomain"
+            },
+            {
+                "Name": "Logbook.API",
+                "Address": "logbook",
+                "Type": "Subdomain"
+            },
+            {
+                "Name": "Notify.API",
+                "Address": "notify",
+                "Type": "Subdomain"
+            },
+            {
+                "Name": "Quote.API",
+                "Address": "quote",
+                "Type": "Subdomain"
+            },
+            {
+                "Name": "Router.API",
+                "Address": "router",
+                "Type": "Subdomain"
+            },
+            {
+                "Name": "Secure.API",
+                "Address": "secure",
+                "Type": "Subdomain"
+            },
+            {
+                "Name": "Service.APP",
+                "Address": "service",
+                "Type": "Subdomain"
+            },
+            {
+                "Name": "Shop.APP",
+                "Address": "shop",
+                "Type": "Subdomain"
+            },
+            {
+                "Name": "Theme.API",
+                "Address": "theme",
+                "Type": "Subdomain"
+            },
+            {
+                "Name": "Vehicle.API",
+                "Address": "vehicle",
+                "Type": "Subdomain"
+            },
+            {
+                "Name": "VIN.API",
+                "Address": "vin",
+                "Type": "Subdomain"
+            },
+            {
+                "Name": "XChange.API",
+                "Address": "xchange",
+                "Type": "Subdomain"
+            },
+            {
+                "Name": "WWW.APP",
+                "Address": "www",
+                "Type": "Subdomain"
+            }
+        ]
     },
     {
-        "Name": "Ads.API",
-        "Address": "ads",
-        "Type": "Subdomain"
-    },
-    {
-        "Name": "Artifact.API",
-        "Address": "artifact",
-        "Type": "Subdomain"
-    },
-    {
-        "Name": "Auth.APP",
-        "Address": "auth",
-        "Type": "Subdomain"
-    },
-    {
-        "Name": "Blog.API",
-        "Address": "blog",
-        "Type": "Subdomain"
-    },
-    {
-        "Name": "Cars.APP",
-        "Address": "cars",
-        "Type": "Subdomain"
-    },
-    {
-        "Name": "Comment.API",
-        "Address": "comment",
-        "Type": "Subdomain"
-    },
-    {
-        "Name": "Comms.API",
-        "Address": "comms",
-        "Type": "Subdomain"
-    },
-    {
-        "Name": "Entity.API",
-        "Address": "entity",
-        "Type": "Subdomain"
-    },
-    {
-        "Name": "Folio.API",
-        "Address": "folio",
-        "Type": "Subdomain"
-    },
-    {
-        "Name": "Funds.API",
-        "Address": "funds",
-        "Type": "Subdomain"
-    },
-    {
-        "Name": "Game.API",
-        "Address": "game",
-        "Type": "Subdomain"
-    },
-    {
-        "Name": "Logbook.API",
-        "Address": "logbook",
-        "Type": "Subdomain"
-    },
-    {
-        "Name": "Notify.API",
-        "Address": "notify",
-        "Type": "Subdomain"
-    },
-    {
-        "Name": "Quote.API",
-        "Address": "quote",
-        "Type": "Subdomain"
-    },
-    {
-        "Name": "Router.API",
-        "Address": "router",
-        "Type": "Subdomain"
-    },
-    {
-        "Name": "Secure.API",
-        "Address": "secure",
-        "Type": "Subdomain"
-    },
-    {
-        "Name": "Service.APP",
-        "Address": "service",
-        "Type": "Subdomain"
-    },
-    {
-        "Name": "Shop.APP",
-        "Address": "shop",
-        "Type": "Subdomain"
-    },
-    
-    {
-        "Name": "Theme.API",
-        "Address": "theme",
-        "Type": "Subdomain"
-    },
-    {
-        "Name": "Vehicle.API",
-        "Address": "vehicle",
-        "Type": "Subdomain"
-    },
-    {
-        "Name": "VIN.API",
-        "Address": "vin",
-        "Type": "Subdomain"
-    },
-    {
-        "Name": "WWW.APP",
-        "Address": "www",
-        "Type": "Subdomain"
+        "Domain": ".localhostB",
+        "Subdomains": [
+            {
+                "Name": "Admin.APP",
+                "Address": "admin",
+                "Type": "Subdomain"
+            },
+            {
+                "Name": "Artifact.API",
+                "Address": "artifact",
+                "Type": "Subdomain"
+            },
+            {
+                "Name": "Auth.APP",
+                "Address": "auth",
+                "Type": "Subdomain"
+            },
+            {
+                "Name": "Blog.API",
+                "Address": "blog",
+                "Type": "Subdomain"
+            },
+            {
+                "Name": "Comment.API",
+                "Address": "comment",
+                "Type": "Subdomain"
+            },
+            {
+                "Name": "Comms.API",
+                "Address": "comms",
+                "Type": "Subdomain"
+            },
+            {
+                "Name": "Folio.API",
+                "Address": "folio",
+                "Type": "Subdomain"
+            },
+            {
+                "Name": "Router.API",
+                "Address": "router",
+                "Type": "Subdomain"
+            },
+            {
+                "Name": "Secure.API",
+                "Address": "secure",
+                "Type": "Subdomain"
+            },
+            {
+                "Name": "Theme.API",
+                "Address": "theme",
+                "Type": "Subdomain"
+            },
+            {
+                "Name": "WWW.APP",
+                "Address": "www",
+                "Type": "Subdomain"
+            }
+        ]
     }
 ]

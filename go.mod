@@ -1,6 +1,6 @@
 module github.com/louisevanderlith/gate
 
 require (
-	github.com/astaxie/beego v1.11.1
-	github.com/louisevanderlith/mango v0.3.55
+	github.com/gorilla/mux v1.7.3
+	github.com/louisevanderlith/droxolite v1.5.9
 )
