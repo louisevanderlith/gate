@@ -44,7 +44,7 @@ func main() {
 	}
 
 	poxy := resins.NewMonoEpoxy(srv, element.GetNoTheme(host, srv.ID, profile))
-	routers.Setup(poxy, srv.ID, keyPath)
+	routers.Setup(poxy)
 
 	err = droxolite.BootSecure(poxy, privPath, conf.HTTPPort)
 

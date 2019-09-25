@@ -3,22 +3,13 @@ package routers
 import (
 	"fmt"
 	"log"
-	"net/http"
 
 	"github.com/gorilla/mux"
 	"github.com/louisevanderlith/droxolite/resins"
 	"github.com/louisevanderlith/gate/domains"
 )
 
-/*
-func Boot(httpsPort, httpPort int) error {
-	r := mux.Router()
-	r.HandleFunc("/ping", BasicHandler)
-
-	log.Fata(http.ListenAn)
-}*/
-
-func Setup(e resins.Epoxi, instanceID, certPath string) {
+func Setup(e resins.Epoxi) {
 	confDomains, err := domains.LoadSettings()
 
 	if err != nil {
@@ -28,16 +19,11 @@ func Setup(e resins.Epoxi, instanceID, certPath string) {
 	router := e.Router()
 	for _, v := range *confDomains {
 		log.Printf("Building %s: \n", v.Domain)
-		//SSL
-		fullCertPath := http.FileSystem(http.Dir(certPath))
-		fs := http.FileServer(fullCertPath)
-		challengePath := "/.well-known/acme-challenge/"
 
 		sub := router.(*mux.Router).Host(fmt.Sprintf("{subdomain:[a-z]+}%s", v.Domain)).Subrouter()
-		sub.Handle(challengePath, fs)
 
 		for _, sdom := range v.Subdomains {
-			handl, err := sdom.SetupMux(instanceID)
+			handl, err := sdom.SetupMux(e.Service().ID)
 
 			if err != nil {
 				log.Printf("Register Subdomains: %s\t%s\n", sdom.Name, err.Error())
