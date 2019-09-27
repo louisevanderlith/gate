@@ -43,8 +43,8 @@ func LoadSettings() (*Settings, error) {
 	return settings, nil
 }
 
-func (s *Subdomain) SetupMux(instanceID string) (http.Handler, error) {
-	rawURL, err := do.GetServiceURL(instanceID, s.Name, false)
+func SetupMux(instanceID, subName string) (http.Handler, error) {
+	rawURL, err := do.GetServiceURL(instanceID, subName, false)
 
 	if err != nil {
 		return nil, err
@@ -55,6 +55,7 @@ func (s *Subdomain) SetupMux(instanceID string) (http.Handler, error) {
 	if err != nil {
 		return nil, err
 	}
+	
 	log.Printf("Proxy: %v\n", vshost)
 	return httputil.NewSingleHostReverseProxy(vshost), nil
 }

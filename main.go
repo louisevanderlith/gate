@@ -3,6 +3,7 @@ package main
 import (
 	"os"
 	"path"
+	"strconv"
 
 	"github.com/louisevanderlith/droxolite"
 	"github.com/louisevanderlith/droxolite/bodies"
@@ -18,18 +19,15 @@ func main() {
 	pubName := os.Getenv("PUBLICKEY")
 	privName := os.Getenv("PRIVATEKEY")
 	host := os.Getenv("HOST")
+	httpport, _ := strconv.Atoi(os.Getenv("HTTPPORT"))
+	httpsport, _ := strconv.Atoi(os.Getenv("HTTPSPORT"))
+	appName := os.Getenv("APPNAME")
 	profile := os.Getenv("PROFILE")
 	pubPath := path.Join(keyPath, pubName)
 	privPath := path.Join(keyPath, privName)
 
-	conf, err := droxolite.LoadConfig()
-
-	if err != nil {
-		panic(err)
-	}
-
 	// Register with router
-	srv := bodies.NewService(conf.Appname, pubPath, conf.HTTPSPort, servicetype.APX)
+	srv := bodies.NewService(appName, profile, pubPath, host, httpsport, servicetype.APX)
 
 	routr, err := do.GetServiceURL("", "Router.API", false)
 
@@ -44,9 +42,9 @@ func main() {
 	}
 
 	poxy := resins.NewMonoEpoxy(srv, element.GetNoTheme(host, srv.ID, profile))
-	routers.Setup(poxy)
+	routers.Setup(poxy, host)
 
-	err = droxolite.BootSecure(poxy, privPath, conf.HTTPPort)
+	err = droxolite.BootSecure(poxy, privPath, httpport)
 
 	if err != nil {
 		panic(err)

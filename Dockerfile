@@ -18,7 +18,6 @@ RUN CGO_ENABLED="0" go build
 FROM scratch
 
 COPY --from=builder /box/gate .
-COPY conf conf
 
 EXPOSE 80
 EXPOSE 443
